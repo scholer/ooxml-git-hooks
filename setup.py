@@ -13,11 +13,11 @@ Python environments::
     
 ``ooxml_git``:
     Has main git repo installed in "editable" mode with ``pip install -e .``
-    ``conda create -n pptx-downsizer-dev python pip pillow pyyaml docutils pandoc`` 
+    ``conda create -n ooxml-git-hooks-dev python pip pillow pyyaml docutils pandoc`` 
 
 ``ooxml-git-test``:
     For installing the ``dist/ooxml-git-hooks-<verson>.tar.gz`` builds.
-    ``source activate pptx-downsizer-build-test``
+    ``source activate ooxml-git-hooks-build-test``
 
 ``ooxml-git-pypi-test``:
     For testing the package uploaded to PyPI.
@@ -27,7 +27,7 @@ Release protocol:
 
 0. Open a new terminal tab for each of the three environments above.
 
-1. Make sure all tests passes in the dev environment ``pptx-downsizer-dev``.
+1. Make sure all tests passes in the dev environment ``ooxml-git-hooks-dev``.
    Verify that all entry points are functional and able to successfully complete.
    Preferably verify that it works both when invoked from console and from Automator scripts (particularly: stdout).
    Check that README.rst is correctly formatted::
@@ -40,25 +40,25 @@ Release protocol:
    then ``git commit`` (or maybe do that after uploading release).
 
 3. Build release:
-    (a) Change to dedicated build/dist environment, e.g. ``pptx-downsizer-build-test``.
-    (b) Clear the old version: ``pip uninstall pptx-downsizer`` (or do a complete wipe).
+    (a) Change to dedicated build/dist environment, e.g. ``ooxml-git-hooks-build-test``.
+    (b) Clear the old version: ``pip uninstall ooxml-git-hooks`` (or do a complete wipe).
     (c) Go to project root directory in terminal and build release with ``python setup.py sdist``,
-    (d) Install build in sdist environment using ``pip install dist/pptx-downsizer-<version>.tar.gz``,
+    (d) Install build in sdist environment using ``pip install dist/ooxml-git-hooks-<version>.tar.gz``,
     (e) Run tests and verify that all entry points are working.
 
 4. Register upload release and source distribution to PyPI TEST site:
    ``python setup.py sdist upload -r pypitest_legacy``,
-   then check https://testpypi.python.org/pypi/pptx-downsizer/ and make sure it looks right.
+   then check https://testpypi.python.org/pypi/ooxml-git-hooks/ and make sure it looks right.
    Note: Previously, this was a two-step process, requiring pre-registration with 
    ``python setup.py register -r pypi(test)``. This is no longer needed.  
 
-5. Register and upload release to production PyPI site and check https://pypi.python.org/pypi/pptx-downsizer/
+5. Register and upload release to production PyPI site and check https://pypi.python.org/pypi/ooxml-git-hooks/
    ``python setup.py sdist upload -r pypi``.
 
-6. Test the PYPI release using the ``pptx-downsizer-pypi-test`` environment,
+6. Test the PYPI release using the ``ooxml-git-hooks-pypi-test`` environment,
    preferably also on a different platforms as well (Windows/Mac/Linux).
-   Use ``pip install -U pptx-downsizer`` to update, or do a complete 
-   wipe+reinstall of the ``pptx-downsizer-pypi-test`` environment.
+   Use ``pip install -U ooxml-git-hooks`` to update, or do a complete 
+   wipe+reinstall of the ``ooxml-git-hooks-pypi-test`` environment.
 
 7. Commit, tag, and push:
    Add all updated files to git (``git status``, then ``git add -u``), 
@@ -66,7 +66,7 @@ Release protocol:
    Tag and annotate this version in git with ``git tag -a <version> -m "message"``,
    then push it with ``git push --follow-tags`` 
    (or ``git push --tags`` if you have already pushed the branch/commits).
-   Check that everything looks good on the GitHub page, https://github.com/scholer/pptx-downsizer
+   Check that everything looks good on the GitHub page, https://github.com/scholer/ooxml-git-hooks
    You can also create tags/releases using GitHub's interface, c.f. 
    https://help.github.com/articles/creating-releases/.
 
@@ -74,12 +74,6 @@ Release protocol:
 
 If you find an error at any point, go back to step 1.
 
-
-Typical testing::
-
-    pptx_downsizer "Presentation.pptx" --verbose 2
-
-    pptx_downsizer "Presentation.downsized.pptx" --convert-to jpeg --fsize-filter 1e6 --verbose 2
 
 
 Regarding PyPI and packaging/distribution:
