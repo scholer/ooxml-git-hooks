@@ -9,15 +9,15 @@ of zipped Office Open XML files, e.g. Word/.docx, Excel/.xlsx, and PowerPoint/.p
 Basic usage:
 ------------
 
-Usage of the ``ooxml_store=ooxml_git_hooks.store:cli`` entry point::
+Usage of the ``ooxml-store=ooxml_git_hooks.store:cli`` entry point::
 
     # Store files to .ooxml_store/ directory:
-    ooxml_store store-file <file>
-    ooxml_store store-all
+    ooxml-store store-file <file>
+    ooxml-store store-all
 
     # Recreate files stored in .ooxml_store/ directory:
-    ooxml_store recreate-file <file>
-    ooxml_store recreate-all
+    ooxml-store recreate-file <file>
+    ooxml-store recreate-all
 
 
 
@@ -40,7 +40,7 @@ Alter repository config, ``.git/config``::
 
     # Better xml diffs:
     [diff "xml"]
-    textconv = prettify_xml
+    textconv = prettify-xml
 
 
 Modify worktree ``.gitattributes`` or repository ``$GIT_DIR/info/attributes`` file::
@@ -88,12 +88,20 @@ Suggestions:
 Package name?
 
 * ooxml_store?
+* ooxml_git_hooks?
 
 
-Hook vs command?
+Git hook vs manual command?
 
 * Hook is convenient, especially if the repository is only used for versioning ooxml files.
 * However, git hooks may be surprising, so could also just use the entry points manually.
+
+
+Nomenclature:
+
+* ``ooxml-store``, with hyphen, is used to denote the project name and the main entry point / "executable".
+* ``ooxml_store``, with underscore, is used to denote the package name,
+  and is also used for the storage directory, ``.ooxml_store``.
 
 
 Features:
@@ -108,7 +116,7 @@ Options:
 * Where and how to extract the zip files.
 * Whether to create pandoc mirrors e.g. in Markdown format.
 * Whether to create md5 checksums of files.
-* Have a 'ooxml_store' directory where all files are extracted (seems like a good idea).
+* Have a '.ooxml_store' directory where all files are extracted (seems like a good idea).
 
 Implementation:
 
@@ -128,7 +136,7 @@ Implementation:
 
 TODO:
 
-* We are currently purging the ``.ooxml_store`` directory every time we run ``ooxml_store store-all``.
+* We are currently purging the ``.ooxml_store`` directory every time we run ``ooxml-store store-all``.
   This is pretty fool proof: The store reflects exactly the ooxml files present in the working directory.
   (and selected by the file-glob filter). However, it is also obviously inefficient, especially if we have many
   ooxml files in the working directory and only one of them has been updated since last commit.

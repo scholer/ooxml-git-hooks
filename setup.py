@@ -11,13 +11,13 @@ ooxml-git-hooks:
 
 Python environments::
     
-``ooxml_git``:
+``ooxml-git-dev``:
     Has main git repo installed in "editable" mode with ``pip install -e .``
-    ``conda create -n ooxml-git-hooks-dev python pip pillow pyyaml docutils pandoc`` 
+    ``conda create -n ooxml-git-dev python pip pillow pyyaml docutils pandoc`` 
 
-``ooxml-git-test``:
-    For installing the ``dist/ooxml-git-hooks-<verson>.tar.gz`` builds.
-    ``source activate ooxml-git-hooks-build-test``
+``ooxml-git-build-test``:
+    For installing and testing the ``dist/ooxml-git-hooks-<verson>.tar.gz`` builds.
+    ``source activate ooxml-git-build-test``
 
 ``ooxml-git-pypi-test``:
     For testing the package uploaded to PyPI.
@@ -123,9 +123,9 @@ setup(
     long_description=long_description,
     url='https://github.com/scholer/ooxml-git-hooks',
     packages=['ooxml_git_hooks'],  # List all packages (directories) to include in the source dist.
-    version='0.1.0-dev2',  # Update for each new version
+    version='0.1.1-dev',  # Update for each new version
     # download_url='https://github.com/scholer/ooxml-git-hooks/tarball/0.1.2',  # Update for each new version
-    download_url='https://github.com/scholer/pptx_downsizer/archive/master.zip',
+    download_url='https://github.com/scholer/ooxml-git-hooks/archive/master.zip',
     author='Rasmus Scholer Sorensen',
     author_email='rasmusscholer@gmail.com',
     license='GNU General Public License v3 (GPLv3)',
@@ -150,8 +150,8 @@ setup(
     entry_points={
         'console_scripts': [
             # These should all be lower-case, else you may get an error when uninstalling:
-            'ooxml_store=ooxml_git_hooks.store:cli',
-            'prettify_xml=ooxml_git_hooks.cli:prettify_xml_cli',
+            'ooxml-store=ooxml_git_hooks.store:cli',
+            'prettify-xml=ooxml_git_hooks.cli:prettify_xml_cli',
 
         ],
     },

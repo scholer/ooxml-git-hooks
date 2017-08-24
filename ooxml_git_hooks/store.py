@@ -7,15 +7,15 @@ Regarding not getting .gitignored:
     !*.docx/*
 
 
-Usage, ooxml_store=ooxml_git_hooks.store:cli entry point:
+Usage, ooxml-store=ooxml_git_hooks.store:cli entry point:
 
     # Store files to .ooxml_store/ directory:
-    ooxml_store store-file <file>
-    ooxml_store store-all
+    ooxml-store store-file <file>
+    ooxml-store store-all
 
     # Recreate files stored in .ooxml_store/ directory:
-    ooxml_store recreate-file <file>
-    ooxml_store recreate-all
+    ooxml-store recreate-file <file>
+    ooxml-store recreate-all
 
 
 """
